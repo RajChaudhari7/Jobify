@@ -6,7 +6,7 @@ JOBIFY is a modern job portal web application built with the MERN stack. It conn
 
 ### For Recruiters
 - Register and log in as a company recruiter
-- Add, edit, delete, and manage job postings
+- Add  delete, and manage job postings
 - Toggle job visibility (visible/invisible)
 - Receive and review job applications
 - Accept or reject job applications
