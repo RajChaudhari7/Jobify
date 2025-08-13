@@ -29,6 +29,10 @@ export const AppContextProvider = (props) => {
 
     const [userData, setUserData] = useState(null)
     const [userApplications, setUserApplications] = useState([])
+    const [jobCategories, setJobCategories] = useState([]);
+    const [jobLocations, setJobLocations] = useState([]);
+    const [jobLevels, setJobLevels] = useState([]);
+
 
     // Function to fetch job data
     const fetchJobs = async () => {
@@ -108,10 +112,26 @@ export const AppContextProvider = (props) => {
         }
     }
 
+    // Function to fetch job meta-data
+    const fetchJobMetaData = async () => {
+        try {
+            const { data } = await axios.get(backendUrl + '/api/jobs/meta/data');
+            if (data.success) {
+                setJobCategories(data.categories || []);
+                setJobLocations(data.locations || []);
+                setJobLevels(data.levels || []);
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
+    };
+
 
     useEffect(() => {
         fetchJobs()
-
+        fetchJobMetaData();
         const storedCompanyToken = localStorage.getItem('companyToken')
 
         if (storedCompanyToken) {
@@ -144,6 +164,9 @@ export const AppContextProvider = (props) => {
         userData, setUserData,
         userApplications, setUserApplications,
         fetchUserData, fetchUserApplications,
+        jobCategories, setJobCategories,
+        jobLocations, setJobLocations,
+        jobLevels, setJobLevels,
     }
 
     return (<AppContext.Provider value={value}>

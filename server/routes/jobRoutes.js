@@ -1,5 +1,5 @@
 import express from 'express'
-import { getJobById, getJobs } from '../controllers/jobController.js';
+import { getJobById, getJobMetaData, getJobs } from '../controllers/jobController.js';
 
 const jobRouter = express.Router();
 
@@ -9,5 +9,6 @@ jobRouter.get('/', getJobs)
 // Route to get sing job by id
 jobRouter.get('/:id', getJobById)
 
-
+// Route to get job meta-data (categories, locations, levels)
+jobRouter.get('/meta/data', getJobMetaData);
 export default jobRouter;

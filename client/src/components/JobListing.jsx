@@ -5,7 +5,7 @@ import JobCart from './JobCart'
 
 const JobListing = () => {
 
-    const { isSearched, searchFilter, setSearchFilter, jobs } = useContext(AppContext)
+    const { isSearched, searchFilter, setSearchFilter, jobs, jobCategories, jobLocations } = useContext(AppContext)
 
     const [showFilter, setShowFilter] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -92,7 +92,7 @@ const JobListing = () => {
                 <div className={showFilter ? "" : "max-lg:hidden"}>
                     <h4 className='font-medium text-lg py-4'>Search by Categories</h4>
                     <ul className='space-y-4 text-gray-600'>
-                        {JobCategories.map((category, index) => (
+                        {jobCategories.map((category, index) => (
                             <li className='flex gap-3 items-center' key={index}>
                                 <input
                                     onChange={() => handleCategoryChange(category)}
@@ -110,7 +110,7 @@ const JobListing = () => {
                 <div className={showFilter ? "" : "max-lg:hidden"}>
                     <h4 className='font-medium text-lg py-4 pt-14'>Search by Location</h4>
                     <ul className='space-y-4 text-gray-600'>
-                        {JobLocations.map((location, index) => (
+                        {jobLocations.map((location, index) => (
                             <li className='flex gap-3 items-center' key={index}>
                                 <input
                                     onChange={() => handleLocationChange(location)}

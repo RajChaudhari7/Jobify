@@ -39,3 +39,15 @@ export const getJobById = async (req, res) => {
     }
 }
 
+// Get job meta-data (categories, locations, levels)
+export const getJobMetaData = async (req, res) => {
+    try {
+        const jobs = await Job.find({ visibile: true });
+        const categories = [...new Set(jobs.map(job => job.category))];
+        const locations = [...new Set(jobs.map(job => job.location))];
+        const levels = [...new Set(jobs.map(job => job.level))];
+        res.json({ success: true, categories, locations, levels });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
