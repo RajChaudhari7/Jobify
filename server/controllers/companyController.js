@@ -88,7 +88,24 @@ export const getCompanyData = async (req, res) => {
 
 }
 
-
+// Delete a job
+export const deleteJob = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const companyId = req.company._id;
+    const job = await Job.findById(id);
+    if (!job) {
+      return res.json({ success: false, message: 'Job not found' });
+    }
+    if (job.companyId.toString() !== companyId.toString()) {
+      return res.json({ success: false, message: 'Unauthorized' });
+    }
+    await Job.findByIdAndDelete(id);
+    res.json({ success: true, message: 'Job deleted successfully' });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
 
 // post a new job
 export const postJob = async (req, res) => {
