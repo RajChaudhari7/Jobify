@@ -6,7 +6,7 @@ export const getJobs = async (req, res) => {
     try {
 
         const jobs = await Job.find({
-            visibile: true
+            visible: true
         }).populate({ path: 'companyId', select: '-password' })
 
         res.json({ success: true, jobs })
@@ -42,7 +42,7 @@ export const getJobById = async (req, res) => {
 // Get job meta-data (categories, locations, levels)
 export const getJobMetaData = async (req, res) => {
     try {
-        const jobs = await Job.find({ visibile: true });
+        const jobs = await Job.find({ visible: true });
         const categories = [...new Set(jobs.map(job => job.category))];
         const locations = [...new Set(jobs.map(job => job.location))];
         const levels = [...new Set(jobs.map(job => job.level))];
