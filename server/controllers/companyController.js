@@ -205,7 +205,7 @@ export const changeVisibility = async (req, res) => {
         if (job.companyId.toString() !== companyId.toString()) {
             return res.json({ success: false, message: 'Unauthorized' });
         }
-        job.visibile = visible; // Set the visible field to the value sent from the frontend
+        job.visible = visible; // Set the visible field to the value sent from the frontend
         await job.save();
         res.json({ success: true, job });
     } catch (error) {
