@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useAuth } from '@clerk/clerk-react';
+import DOMPurify from 'dompurify';
 
 const ApplyJob = () => {
   const navigate = useNavigate();
