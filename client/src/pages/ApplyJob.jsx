@@ -121,7 +121,7 @@ const ApplyJob = () => {
           <div className="flex flex-col lg:flex-row justify-between items-start">
             <div className="w-full lg:w-2/3">
               <h2 className="font-bold text-2xl mb-4">Job Description</h2>
-              <div className="rich-text" dangerouslySetInnerHTML={{ __html: jobData.description }}></div>
+              <div className="rich-text" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(jobData.description) }}></div>
               <button
                 onClick={applyHandle}
                 className="mt-10 cursor-pointer bg-blue-600 p-2.5 px-10 rounded text-white"
