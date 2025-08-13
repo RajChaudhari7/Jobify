@@ -193,25 +193,22 @@ export const changeJobApplicationsStatus = async (req, res) => {
     }
 }
 
-// change job visibility
+// Change job visibility
 export const changeVisibility = async (req, res) => {
     try {
-
-        const { id } = req.body;
-
-        const companyId = req.company._id
-
-        const job = await Job.findById(id)
-
-        if (companyId.toString() === job.companyId.toString()) {
-            job.visibile = !job.visibile
+        const { id, visible } = req.body; // Get the visible value from the request body
+        const companyId = req.company._id;
+        const job = await Job.findById(id);
+        if (!job) {
+            return res.json({ success: false, message: 'Job not found' });
         }
-
-        await job.save()
-
-        res.json({ success: true, job })
-
+        if (job.companyId.toString() !== companyId.toString()) {
+            return res.json({ success: false, message: 'Unauthorized' });
+        }
+        job.visible = visible; // Set the visible field to the value sent from the frontend
+        await job.save();
+        res.json({ success: true, job });
     } catch (error) {
-        res.json({ success: false, message: error.message })
+        res.json({ success: false, message: error.message });
     }
-}
+};
