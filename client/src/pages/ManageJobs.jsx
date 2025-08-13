@@ -38,7 +38,6 @@ const ManageJobs = () => {
 
   }
 
-  // function to change job visibility
   const changeJobVisibility = async (id, visible) => {
     try {
       const { data } = await axios.post(
@@ -56,6 +55,7 @@ const ManageJobs = () => {
       toast.error(error.message);
     }
   };
+
 
   // Function to delete a job
   const deleteJob = async (id) => {
@@ -116,6 +116,7 @@ const ManageJobs = () => {
                     type="checkbox"
                     checked={job.visible}
                   />
+
                 </td>
                 <td className='py-2 px-4 border-b border-gray-300'>
                   <button
