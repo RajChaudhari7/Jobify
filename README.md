@@ -53,11 +53,11 @@ JOBIFY is a modern job portal web application built with the MERN stack. It conn
    ```bash
    # In one terminal
    cd server
-   npm run dev
+   npm run server
 
    # In another terminal
    cd client
-   npm start
+   npm run dev
    ```
 
 ## Usage
