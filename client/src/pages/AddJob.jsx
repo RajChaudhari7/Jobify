@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 
 const AddJob = () => {
     const [title, setTitle] = useState('');
-    const [location, setLocation] = useState('Bangalore');
+    const [location, setLocation] = useState('Vadodara');
     const [category, setCategory] = useState('Programming');
     const [level, setLevel] = useState('Beginner level');
     const [salary, setSalary] = useState(0);
